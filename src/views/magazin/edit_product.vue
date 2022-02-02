@@ -18,13 +18,13 @@
           <div class="col-6  create_pro">
             <label class="cre_label ">Oldi</label>
             <div class="input_group">
-              <input type="text" v-mask="'### ### ### ### ### ### ###'" v-model="getMarket[0].sum_order" placeholder="Name" >
+              <input type="text" @input="myFunc(getMarket[0].sum_order)" v-model="getMarket[0].sum_order" placeholder="Name" >
             </div>
           </div>
           <div class="col-6 create_pro">
             <label class="cre_label  ">Berdi</label>
             <div class="input_group">
-              <input type="text"  v-mask="'### ### ### ### ### ### ###'" v-model="getMarket[0].received_money"  placeholder="Name" >
+              <input type="text"  @input="myFunc1(getMarket[0].received_money)" v-model="getMarket[0].received_money"  placeholder="Name" >
             </div>
           </div>
           <div class="col-12 create_pro">
@@ -122,6 +122,15 @@ export default {
     this.$store.dispatch('editMagazins')
   },
   methods:{
+    myFunc1(item){
+      item=item.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      console.log(item)
+      this.getMarket[0].received_money=item
+    },
+    myFunc(item){
+      item=item.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      this.getMarket[0].sum_order=item
+    },
     checkeds(){
       if(this.hour>23||this.hour<0){
         this.hour="00"

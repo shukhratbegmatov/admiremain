@@ -18,13 +18,13 @@
         <div class="col-6  create_pro">
           <label class="cre_label ">Oldi</label>
           <div class="input_group">
-            <input type="text" v-mask="'### ### ### ### ### ### ###'"  v-model="olindi" placeholder="Sum" >
+            <input type="text"  @input="myFunc(olindi)"  v-model="olindi" placeholder="Sum" >
           </div>
         </div>
         <div class="col-6 create_pro">
-          <label class="cre_label  ">Berdi</label>
+          <label class="cre_label  " >Berdi</label>
           <div class="input_group">
-            <input type="text" v-mask="'### ### ### ### ### ### ###'" v-model="berildi" placeholder="Sum" >
+            <input type="text"  @input="myFunc1(berildi)" v-model="berildi" placeholder="Sum" >
           </div>
         </div>
         <div class="col-12 create_pro">
@@ -64,8 +64,6 @@
 
               <datepicker :value="date" name="uniquename"></datepicker>
               </div>
-<!--              <b-form-timepicker  aria-controls="example-input"  v-model="times" locale="en"></b-form-timepicker>-->
-<!--              <input v-model="times" type="time">-->
               <div class="time_groups">
                 <input v-model="hour" @input="checkeds()" type="text" class="minute">:<input @input="checkeds()" v-model="minute" type="text" class="minute">
               </div>
@@ -129,6 +127,14 @@ export default {
 
   },
   methods:{
+    myFunc(item){
+      item=item.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      this.olindi=item
+    },
+    myFunc1(item){
+      item=item.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+      this.berildi=item
+    },
     checkeds(){
       if(this.hour>23||this.hour<0){
         this.hour="00"
