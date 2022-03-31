@@ -4,23 +4,23 @@
       <nav>
         <ul class="footer-menu">
           <li class="active">
-            <a href="#!">
-              <img src="../../assets/images/svg/markets.svg" alt="icon">
-            </a>
+            <router-link to="/">
+              <img src="@/assets/images/svg/markets.svg" alt="icon">
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/ru/Statistic">
+              <img src="@/assets/images/svg/statistics.svg" alt="icon">
+            </router-link>
           </li>
           <li>
             <a href="#!">
-              <img src="../../assets/images/svg/statistics.svg" alt="icon">
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <img src="../../assets/images/svg/group.svg" alt="icon">
+              <img src="@/assets/images/svg/group.svg" alt="icon">
             </a>
           </li>
           <li>
             <a @click="log_out()">
-              <img src="../../assets/images/svg/prodile.svg" alt="icon">
+              <img src="@/assets/images/svg/prodile.svg" alt="icon">
             </a>
           </li>
         </ul>

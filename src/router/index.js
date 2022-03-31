@@ -32,27 +32,37 @@ const routes = [
       {
         path: 'shop/create',
         name: 'crete/sjaj',
-        component: () => import( '../views/magazin/create')
+        component: () => import( '@/views/magazin/create')
       },
       {
         path: 'shop/:id/',
         name: 'crete/shhs',
-        component: () => import( '../views/magazin/single')
+        component: () => import( '@/views/magazin/single')
       },
       {
         path: 'shop/:id/create_product',
         name: 'crete/show',
-        component: () => import( '../views/magazin/create_mahsulot')
+        component: () => import( '@/views/magazin/create_mahsulot')
       },
       {
         path: 'shop/:id/edit_product/:pro_id',
         name: 'crete/show',
-        component: () => import( '../views/magazin/edit_product.vue')
+        component: () => import( '@/views/magazin/edit_product.vue')
       },
       {
         path: 'shop/:id/give',
         name: 'crete',
-        component: () => import( '../views/magazin/give.vue')
+        component: () => import( '@/views/magazin/give.vue')
+      },
+      {
+        path: 'statistic',
+        name: 'statistic',
+        component: () => import( '@/views/main/statistic.vue')
+      },
+      {
+        path: 'Today',
+        name: 'today',
+        component: () => import( '@/views/main/Today.vue')
       },
       // {
       //   path: 'login',

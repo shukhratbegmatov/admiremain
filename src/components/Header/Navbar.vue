@@ -17,7 +17,7 @@
     <div class="container">
       <nav class="nav">
         <router-link to="/">
-          <img src="../../assets/images/svg/logo.svg" alt="logo">
+          <img src="@/assets/images/svg/logo.svg" alt="logo">
         </router-link>
         <ul class="menu">
           <li>
