@@ -7,7 +7,8 @@ import  './assets/css/style.css'
 import './assets/css/bootstrap-grid.css'
 require('@/store/subscribe')
 import axios from 'axios'
-
+import Toasted from 'vue-toasted';
+Vue.use(Toasted)
 axios.defaults.baseURL = "https://unibeton.uz/v1/"
 Vue.prototype.$axiosDefault = axios
 //

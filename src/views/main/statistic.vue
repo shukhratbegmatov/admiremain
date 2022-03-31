@@ -62,7 +62,7 @@
             </div>
             <div class="sta-balance">
               <div>
-                <div class="b-text">Umumiy balans</div>
+                <div class="b-text">{{$store.state.is_showStatistic.name}}</div>
                 <div class="text-b">
                   <span>182 654 123</span><span>so'm</span>
                 </div>
@@ -85,6 +85,9 @@ import Footer from "@/components/Header/Footer";
 export default {
   data() {
     return {};
+  },
+  mounted() {
+    this.$store.dispatch('statistic')
   },
   components: { Footer },
 };

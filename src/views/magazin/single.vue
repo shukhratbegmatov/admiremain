@@ -30,6 +30,11 @@
             <img src="../../assets/images/svg/location.svg" alt="icon"> <span>manzil</span>
           </a>
         </div>
+        <div class="market-contact">
+          <a class="market-location cursor_poenter" @click="copyToClipboard(text=$store.state.getlink.link);">
+            <span>Copy link</span>
+          </a>
+        </div>
       </div>
       <section class="border-dashed">
         <div class="container">
@@ -74,6 +79,21 @@ export default {
   mounted() {
     this.$store.dispatch('getProduct')
     this.$store.dispatch('actsMagazin')
+    this.$store.dispatch('getLink')
+  },
+  methods:{
+    copyToClipboard(text){
+      const elem = document.createElement('textarea');
+      elem.value = text;
+      document.body.appendChild(elem);
+      elem.select();
+      document.execCommand('copy');
+      document.body.removeChild(elem);
+      this.$toasted.show("copy link", {
+        duration: 1000,
+        'type': 'info'
+      })
+    }
   },
   computed: {
     getMarket() {
