@@ -11,7 +11,11 @@ export default new Vuex.Store({
         check:[],
         spiner:false,
         checkone:[],
-        pending:false
+        pending:false,
+        statistics:[],
+        isActive:false,
+        is_showStatistic:{},
+        getlink:{}
     },
     mutations:{
         SET_MAGAZIN(state, payload) {
@@ -114,6 +118,30 @@ export default new Vuex.Store({
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + localStorage.getItem('token')
                     }
+                })
+        },
+        statistic({state}) {
+             axios.get("statistic/latest-act",
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+                 .then(res=>{
+                     state.statistics=res.data.data
+                 })
+        },
+        getLink({state}) {
+            axios.get("/market/"+router.currentRoute.params.id+"/get-link",
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+                .then(res=>{
+                    state.getlink=res.data.data
                 })
         }
     },

@@ -60,7 +60,7 @@ const routes = [
         component: () => import( '@/views/main/statistic.vue')
       },
       {
-        path: 'Today',
+        path: 'today',
         name: 'today',
         component: () => import( '@/views/main/Today.vue')
       },

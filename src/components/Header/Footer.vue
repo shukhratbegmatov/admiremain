@@ -9,7 +9,7 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/ru/Statistic">
+            <router-link to="/ru/statistic">
               <img src="@/assets/images/svg/statistics.svg" alt="icon">
             </router-link>
           </li>
