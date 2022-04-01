@@ -26,7 +26,7 @@
                   <img src="@/assets/images/svg/next-blue.svg" alt=":(" />
                 </div>
               </router-link>
-              <a class="sta-item" href="/index.html">
+              <a class="sta-item" href="/">
                 <div class="sta-inner">
                   <span class="sta-icon-bg grey">
                     <img src="@/assets/images/png/pie-chart.png" alt=":(" />

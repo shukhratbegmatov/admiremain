@@ -10,8 +10,9 @@
             </div>
           </div>
           <div class="today-calc">
-            <div class="today-last"><span>{{sum_order}}</span><span>so'm</span></div>
-            <div class="today-first"><span>{{received_money}}</span><span>so'm</span></div>
+            <div class="today-last "><span class="mx-2">{{sum_order.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</span> <span> so'm</span></div>
+            <div class="today-first "><span class="mx-2">{{received_money.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</span>
+              <span> so'm</span></div>
           </div>
         </div>
       </div>

@@ -19,11 +19,11 @@
           <div class="today-balance">
             <div class="today-last">
               <img src="@/assets/images/svg/up-red.svg" alt=":(" />
-              <div><span>{{ $store.state.statistics.total_sum }}</span><span>so'm</span></div>
+              <div><span>{{ $store.state.statistics.total_sum.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ") }}</span><span>so'm</span></div>
             </div>
             <div class="today-first">
               <img src="@/assets/images/svg/down-blue.svg" alt=":(" />
-              <div><span>{{ $store.state.statistics.total_receive}}</span> <span>so'm</span></div>
+              <div><span>{{ $store.state.statistics.total_receive.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ")}}</span> <span>so'm</span></div>
             </div>
           </div>
         </div>

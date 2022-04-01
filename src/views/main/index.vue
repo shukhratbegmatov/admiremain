@@ -68,25 +68,23 @@
     </header>
     <main class="main">
       <div class="container">
-        <div>
+        <div v-if="markets">
           <a
             @scroll="scroll(item)"
-            :id="'id' + item.id"
             class="market-item"
-            v-for="(item, index) in 3"
+            v-for="(item, index) in markets"
             :key="index"
           >
             <div
               class="inner-market"
               @click="nexPage(item.id)"
-              @mousedown="getDelete($event)"
             >
               <div class="market-client">
                 <div class="market-logo">
                   <img src="@/assets/images/png/Makro.png" alt="icon" />
                 </div>
                 <div>
-                  <div class="market-name">{{ item.name }}</div>
+                  <div class="market-name">{{ item.name }} {{item.active}}</div>
                   <div class="market-price">
                     <span class="market-back">
                       <img src="@/assets/images/svg/back.svg" alt="icon"
@@ -103,20 +101,18 @@
               </div>
             </div>
             <div class="action-wrap">
-              <button @click="showActions()" class="btn-action">
+              <button @click="showActions(index)" class="btn-action">
                 <span class="dots"></span>
               </button>
               <div
-                class="actions-links-wrap"
-                :class="{
-                  'actions-links-show': $store.state.isActive,
-                }"
+                class="actions-links-wrap "
+                :class="{'actions-links-show':isActives[index].active}"
               >
                 <a href="#!" class="action-link">
                   <img src="@/assets/images/svg/prodile.svg" alt=":(" />
                   <span>xodim qo'shish</span>
                 </a>
-                <a href="#!" class="action-link">
+                <a @click="deleteFunc(item.id)" class="action-link">
                   <img src="@/assets/images/svg/delate.svg" alt=":(" />
                   <span>o'chirish</span>
                 </a>
@@ -156,9 +152,17 @@ export default {
       markets: [],
       searchs: false,
       text: "",
+      isActives:[],
+      isActives1:[]
     };
   },
   mounted() {
+    // window.addEventListener('click',function (){
+    //   this.isActives.forEach(el=>{
+    //     el.active=false
+    //   })
+    //   console.log("hello")
+    // })
     axios
       .get("market?per-page=" + this.item, {
         headers: {
@@ -167,7 +171,12 @@ export default {
         },
       })
       .then((response) => {
-        this.markets = response.data;
+        this.markets = response.data.data;
+        for (let i=0;i<=this.markets.length;i++){
+          this.isActives.push({
+            'active':false
+          })
+        }
       });
     this.scroll();
   },
@@ -180,8 +189,28 @@ export default {
     }),
   },
   methods: {
-    showActions: function () {
-      this.$store.state.isActive = !this.$store.state.isActive;
+    deleteFunc(item){
+      axios
+          .post("market/delete-market",
+
+                [item]
+              ,
+              {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then(() => {
+            this.$router.go()
+          });
+  },
+    showActions(index) {
+      // this.isActives.forEach(el=>{
+      //   el.active=false
+      // })
+      this.isActives[index].active=!this.isActives[index].active
+      console.log(this.isActives[index].active)
     },
     searchsF() {
       axios
@@ -221,14 +250,6 @@ export default {
     },
     nexPage(item) {
       this.$router.push("/ru/shop/" + item);
-    },
-    getDelete(event) {
-      if (event.type == "mousedown") {
-        setTimeout(() => {
-          var reserved = document.getElementById(event.target.id);
-          reserved.classList.add("active");
-        }, 1000);
-      }
     },
   },
 };
@@ -341,6 +362,7 @@ export default {
   position: relative;
 }
 .actions-links-wrap {
+  z-index: 2;
   position: absolute;
   right: 20px;
   top: -16px;
