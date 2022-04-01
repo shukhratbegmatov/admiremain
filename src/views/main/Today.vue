@@ -19,11 +19,11 @@
           <div class="today-balance">
             <div class="today-last">
               <img src="@/assets/images/svg/up-red.svg" alt=":(" />
-              <div><span>12 567 000</span><span>so'm</span></div>
+              <div><span>{{ $store.state.statistics.total_sum }}</span><span>so'm</span></div>
             </div>
             <div class="today-first">
               <img src="@/assets/images/svg/down-blue.svg" alt=":(" />
-              <div><span>10 000 000</span> <span>so'm</span></div>
+              <div><span>{{ $store.state.statistics.total_receive}}</span> <span>so'm</span></div>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
         </div>
       </section>
       <div class="scroll-body">
-        <market-item v-for="marketItem in $store.state.statistics" :key="marketItem.id" isModal
+        <market-item v-for="marketItem in $store.state.statistics.data" :key="marketItem.id" isModal
           :name="marketItem.name"
          :received_money="marketItem.received_money"
          :sum_order="marketItem.sum_order"

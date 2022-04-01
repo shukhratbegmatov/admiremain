@@ -129,7 +129,7 @@ export default new Vuex.Store({
                     }
                 })
                  .then(res=>{
-                     state.statistics=res.data.data
+                     state.statistics=res.data
                  })
         },
         getLink({state}) {
