@@ -55,7 +55,7 @@
           </div>
           <div class="form_btn_f">
             <button class="form_btn">
-              <span v-if="$store.state.spiner == false">Qo’shish</span>
+              <span v-if="$store.state.spiner == false">Tahrirlash</span>
               <b-spinner v-if="$store.state.spiner == true"></b-spinner>
             </button>
           </div>
@@ -68,6 +68,7 @@
 <script>
 import Navbar from "../../components/Header/Navbar";
 import Footer from "../../components/Header/Footer";
+import axios from "axios";
 export default {
   components: {
     Footer,
@@ -81,10 +82,25 @@ export default {
       errors: "sas",
     };
   },
+  mounted() {
+    axios
+        .get("market/" + this.$route.params.id, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          console.log(res.data.data)
+          this.name=res.data.data[0].name
+          this.number=res.data.data[0].market_info[0].phone
+          this.address=res.data.data[0].market_info[0].address
+        });
+  },
   methods: {
     submit() {
       this.$store
-          .dispatch("createMagazin", {
+          .dispatch("updateMagazin", {
             name: this.name,
             phone: this.number,
             address: this.address,

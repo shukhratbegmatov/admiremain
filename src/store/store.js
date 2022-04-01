@@ -100,6 +100,24 @@ export default new Vuex.Store({
                 }
             })
         },
+        updateMagazin(_,credentials){
+            return  axios.post("market/"+router.currentRoute.params.id+'/update-market',credentials,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+        },
+        createEmployer(_,credentials){
+            return  axios.post("market/"+router.currentRoute.params.id+"/new-employee",credentials,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
+        },
         createProduct(_,credentials){
             return  axios.post("market/"+router.currentRoute.params.id+"/new-action",
                 credentials,

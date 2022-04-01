@@ -14,9 +14,9 @@
             </router-link>
           </li>
           <li>
-            <a href="#!">
+            <router-link to="/ru/employers" >
               <img src="@/assets/images/svg/group.svg" alt="icon">
-            </a>
+            </router-link>
           </li>
           <li>
             <a @click="log_out()">

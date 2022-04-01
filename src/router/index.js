@@ -35,6 +35,21 @@ const routes = [
         component: () => import( '@/views/magazin/create')
       },
       {
+        path: 'employers',
+        name: 'crete/sjaj',
+        component: () => import( '../views/main/employers')
+      },
+      {
+        path: 'employer/create/:id',
+        name: 'crete/sjaj',
+        component: () => import( '../views/magazin/create_employer')
+      },
+      {
+        path: 'shop/edit/:id',
+        name: 'crete/sjaj',
+        component: () => import( '../views/magazin/editM')
+      },
+      {
         path: 'shop/:id/',
         name: 'crete/shhs',
         component: () => import( '@/views/magazin/single')

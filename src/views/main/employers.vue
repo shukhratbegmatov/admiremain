@@ -5,37 +5,37 @@
         <div class="search_ch">
           <div class="input_group">
             <input
-              type="text"
-              id="search"
-              @input="searchsF()"
-              v-model="text"
-              placeholder="Maxsulot nomi bilan izlang"
+                type="text"
+                id="search"
+                @input="searchsF()"
+                v-model="text"
+                placeholder="Maxsulot nomi bilan izlang"
             />
 
             <svg
-              @click="
+                @click="
                 searchs = false;
                 text = '';
               "
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M14.6668 1.33334L1.3335 14.6667"
-                stroke="#200E32"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                  d="M14.6668 1.33334L1.3335 14.6667"
+                  stroke="#200E32"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
               <path
-                d="M14.6668 14.6667L1.3335 1.33334"
-                stroke="#200E32"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                  d="M14.6668 14.6667L1.3335 1.33334"
+                  stroke="#200E32"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
             </svg>
           </div>
@@ -70,14 +70,14 @@
       <div class="container">
         <div v-if="markets">
           <a
-            @scroll="scroll(item)"
-            class="market-item"
-            v-for="(item, index) in markets"
-            :key="index"
+              @scroll="scroll(item)"
+              class="market-item"
+              v-for="(item, index) in markets"
+              :key="index"
           >
             <div
-              class="inner-market"
-              @click="nexPage(item.id)"
+                class="inner-market"
+                @click="nexPage(item.id)"
             >
               <div class="market-client">
                 <div class="market-logo">
@@ -88,7 +88,7 @@
                   <div class="market-price">
                     <span class="market-back">
                       <img src="@/assets/images/svg/back.svg" alt="icon"
-                    /></span>
+                      /></span>
                     <div class="market-sum">
                       <span>{{ item.market_balance }}</span
                       ><span> so'm</span>
@@ -105,8 +105,8 @@
                 <span class="dots"></span>
               </button>
               <div
-                class="actions-links-wrap "
-                :class="{'actions-links-show':isActives[index].active}"
+                  class="actions-links-wrap "
+                  :class="{'actions-links-show':isActives[index].active}"
               >
                 <router-link :to="'ru/employer/create/'+item.id" class="action-link">
                   <img src="@/assets/images/svg/prodile.svg" alt=":(" />
@@ -164,20 +164,20 @@ export default {
     //   console.log("hello")
     // })
     axios
-      .get("market?per-page=" + this.item, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        this.markets = response.data.data;
-        for (let i=0;i<=this.markets.length;i++){
-          this.isActives.push({
-            'active':false
-          })
-        }
-      });
+        .get("market?include=employee", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          this.markets = response.data.data;
+          for (let i=0;i<=this.markets.length;i++){
+            this.isActives.push({
+              'active':false
+            })
+          }
+        });
     this.scroll();
   },
   computed: {
@@ -193,18 +193,18 @@ export default {
       axios
           .post("market/delete-market",
 
-                [item]
+              [item]
               ,
               {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              })
           .then(() => {
             this.$router.go()
           });
-  },
+    },
     showActions(index) {
       this.isActives.forEach(el=>{
         el.active=false
@@ -214,37 +214,37 @@ export default {
     },
     searchsF() {
       axios
-        .get("market?name=" + this.text, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => {
-          console.log(this.markets, "hello");
-          this.markets = response.data;
-        });
+          .get("market?name=" + this.text, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            console.log(this.markets, "hello");
+            this.markets = response.data;
+          });
     },
     scroll() {
       window.onscroll = () => {
         let bottomOfWindow =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight;
+            document.documentElement.scrollTop + window.innerHeight ===
+            document.documentElement.offsetHeight;
 
         if (bottomOfWindow) {
           this.$store.state.pending = true;
           this.item = this.item + 20;
           axios
-            .get("market?per-page=" + this.item, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            })
-            .then((response) => {
-              this.markets = response.data;
-              this.$store.state.pending = false;
-            });
+              .get("market?per-page=" + this.item, {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              })
+              .then((response) => {
+                this.markets = response.data;
+                this.$store.state.pending = false;
+              });
         }
       };
     },

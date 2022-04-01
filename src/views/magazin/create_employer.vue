@@ -32,27 +32,27 @@
               stroke-linejoin="round"
           />
         </svg>
-        Do’kon qo’shish
+        Ishchi qo’shish
         <div v-if="errors.data">
           {{ errors.data.errors.phone }}
         </div>
       </router-link>
       <div class="f_forms">
         <form class="create_form" @submit.p.prevent="submit()">
-          <label class="cre_label">Do’kon username</label>
+          <label class="cre_label">Ismi</label>
           <div class="input_group">
-            <input type="text" v-model="name" placeholder="Name" />
+            <input type="text" v-model="name" placeholder="first_name" />
           </div>
 
+          <label class="cre_label">Familiyasi</label>
+          <div class="input_group">
+            <input type="text" v-model="address" placeholder="last_name" />
+          </div>
           <label class="cre_label">Telefon raqam</label>
           <div class="input_group">
             <input type="number" v-model="number" placeholder="phone" />
           </div>
 
-          <label class="cre_label">Manzil</label>
-          <div class="input_group">
-            <input type="text" v-model="address" placeholder="address" />
-          </div>
           <div class="form_btn_f">
             <button class="form_btn">
               <span v-if="$store.state.spiner == false">Qo’shish</span>
@@ -84,10 +84,10 @@ export default {
   methods: {
     submit() {
       this.$store
-          .dispatch("createMagazin", {
-            name: this.name,
+          .dispatch("createEmployer", {
+            first_name: this.name,
             phone: this.number,
-            address: this.address,
+            last_name: this.address,
           })
           .then(() => {
             this.$router.push("/");
