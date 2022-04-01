@@ -5,7 +5,7 @@
         <div class="container">
           <nav class="nav">
             <a href="/index.html">
-              <img src="../../assets/images/svg/logo.svg" alt="logo" />
+              <img src="@/assets/images/svg/logo.svg" alt="logo" />
             </a>
             <div class="title-info">Statistikalar</div>
           </nav>

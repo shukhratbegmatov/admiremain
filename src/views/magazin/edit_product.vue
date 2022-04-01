@@ -45,8 +45,6 @@
             </div>
           </div>
 
-
-
           <div class="col-12 create_pro">
             <label class="cre_label  ">Oldi berdi vaqti</label>
             <div class="dates">
@@ -88,7 +86,7 @@
   </div>
 </template>
 <script>
-import Footer from "../../components/Header/Footer";
+import Footer from "@/components/Header/Footer";
 import Datepicker from 'vuejs-datepicker';
 
 // CSS

@@ -48,6 +48,7 @@ body {
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     font-family: Cera Pro;
+    overflow-x: hidden;
 }
 
 ul {

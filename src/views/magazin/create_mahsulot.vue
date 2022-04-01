@@ -176,7 +176,7 @@
   </div>
 </template>
 <script>
-import Footer from "../../components/Header/Footer";
+import Footer from "@/components/Header/Footer";
 import Datepicker from "vuejs-datepicker";
 // CSS
 import { mapGetters } from "vuex";
