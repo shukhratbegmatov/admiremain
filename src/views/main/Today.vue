@@ -378,24 +378,24 @@
         </div> -->
       </div>
       <div class="modal-bg"></div>
-      <!-- 
+      
     <div>
     <div id="infoModal" class="modal">
       <div class="modalContent">
         <div class="modal-market">
-          <div class="market-logo"> <img src="./images/png/Makro.png" alt=":("> </div>
+          <div class="market-logo"> <img src="@/assets/images/png/Makro.png" alt=":("> </div>
           <div>
             <div class="modal-market-name">makrosupermarket</div>
             <div class="today-time">11:12</div>
           </div>
         </div>
         <div class="modal-client-block">
-          <div class="modal-client-info"> <img src="./images/svg/user-modal.svg" alt=":("> <span class="b-text-b">Diller
+          <div class="modal-client-info"> <img src="@/assets/images/svg/user-modal.svg" alt=":("> <span class="b-text-b">Diller
               nomi:</span> </div>
           <div class="modal-client-name">Kozimjon</div>
         </div>
         <div class="modal-client-block">
-          <div class="modal-client-info"> <img src="./images/svg/phone-modal.svg" alt=":("> <span class="b-text-b">Tel
+          <div class="modal-client-info"> <img src="@/assets/images/svg/phone-modal.svg" alt=":("> <span class="b-text-b">Tel
               raqam::</span> </div>
           <div class="modal-client-name">+998 99 000 00 00</div>
         </div>
@@ -406,7 +406,7 @@
     </div>
   </div>
 
-  -->
+ 
     </main>
     <Footer></Footer>
   </div>
