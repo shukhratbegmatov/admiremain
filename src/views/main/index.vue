@@ -72,12 +72,15 @@
           <a
             @scroll="scroll(item)"
             :id="'id' + item.id"
-            @mousedown="getDelete($event)"
             class="market-item"
             v-for="(item, index) in 3"
             :key="index"
           >
-            <div class="inner-market" @click="nexPage(item.id)">
+            <div
+              class="inner-market"
+              @click="nexPage(item.id)"
+              @mousedown="getDelete($event)"
+            >
               <div class="market-client">
                 <div class="market-logo">
                   <img src="@/assets/images/png/Makro.png" alt="icon" />
@@ -100,15 +103,27 @@
               </div>
             </div>
             <div class="action-wrap">
-              <button
-                @click="`{'active-action': true}`"
-                class="btn-action active-action"
-              >
+              <button @click="showActions()" class="btn-action">
                 <span class="dots"></span>
               </button>
-              <div>
-                <span><img src="@/assets/images/svg/delate.svg" alt=":("></span>
-                <span><img src="@/assets/images/svg/edit.svg" alt=":("></span>
+              <div
+                class="actions-links-wrap"
+                :class="{
+                  'actions-links-show': $store.state.isActive,
+                }"
+              >
+                <a href="#!" class="action-link">
+                  <img src="@/assets/images/svg/prodile.svg" alt=":(" />
+                  <span>xodim qo'shish</span>
+                </a>
+                <a href="#!" class="action-link">
+                  <img src="@/assets/images/svg/delate.svg" alt=":(" />
+                  <span>o'chirish</span>
+                </a>
+                <a href="#!" class="action-link">
+                  <img src="@/assets/images/svg/edit.svg" alt=":(" />
+                  <span>tuzatish</span>
+                </a>
               </div>
             </div>
           </a>
@@ -130,8 +145,7 @@
 <style>
 </style>
 <script>
-import Footer from "../../components/Header/Footer";
-
+import Footer from "@/components/Header/Footer";
 import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
@@ -166,6 +180,9 @@ export default {
     }),
   },
   methods: {
+    showActions: function () {
+      this.$store.state.isActive = !this.$store.state.isActive;
+    },
     searchsF() {
       axios
         .get("market?name=" + this.text, {
@@ -284,10 +301,10 @@ export default {
   display: flex;
 }
 .btn-action {
-  width: 30px;
+  width: 50px;
   height: 50px;
   background-color: transparent;
-  margin-right: -5px;
+  margin-right: -10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -297,28 +314,67 @@ export default {
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: #094cb6;
 }
 .btn-action span::before {
   content: "";
   position: absolute;
   left: 0;
-  top: -16px;
+  top: -14px;
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: #094cb6;
 }
 .btn-action span::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 16px;
+  top: 14px;
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background-color: gray;
+  background-color: #094cb6;
 }
-/* .active-action {
-} */
+.action-wrap {
+  display: flex;
+  position: relative;
+}
+.actions-links-wrap {
+  position: absolute;
+  right: 20px;
+  top: -16px;
+  min-width: auto;
+  height: fit-content;
+  background-color: #094cb6;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 20px 20px 15px 15px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+  transform: scale(0);
+  transform-origin: top right;
+}
+.actions-links-show {
+  transform: scale(1);
+  transform-origin: top right;
+}
+.action-link {
+  display: inline-flex;
+}
+.action-link img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  object-position: center;
+  margin-right: 12px;
+}
+.action-link span {
+  display: block;
+  width: max-content;
+  color: #fff;
+}
+.action-link:not(:last-child) {
+  margin-bottom: 20px;
+}
 </style>

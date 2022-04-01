@@ -14,7 +14,7 @@
         >
           <div class="debt-date">
             <div class="debt-data">
-              <img src="../../assets/images/svg/clock.svg" alt="icon" />
+              <img src="@/assets/images/svg/clock.svg" alt="icon" />
               <span> {{ items.date }}</span>
             </div>
             <div class="debt-text">
@@ -25,7 +25,7 @@
           </div>
           <div class="debt-info-sum">
             <div class="debt-el">
-              <img src="../../assets/images/svg/up-red.svg" alt="icon" />
+              <img src="@/assets/images/svg/up-red.svg" alt="icon" />
               <span class="debt-text">berdi:</span>
             </div>
             <div class="debt-give">
@@ -34,7 +34,7 @@
           </div>
           <div class="debt-info-sum debt-info-sum2">
             <div class="debt-el">
-              <img src="../../assets/images/svg/down-blue.svg" alt="icon" />
+              <img src="@/assets/images/svg/down-blue.svg" alt="icon" />
               <span class="debt-text">oldi:</span>
             </div>
             <div class="debt-give">
@@ -75,9 +75,9 @@
 </template>
 
 <script>
-import Footer from "../../components/Header/Footer";
+import Footer from "@/components/Header/Footer";
 import axios from "axios";
-import router from "../../router";
+import router from "@/router";
 
 export default {
   props: ["checks"],
