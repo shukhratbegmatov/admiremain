@@ -49,7 +49,6 @@
 </template>
 <script>
 
-import {mapActions} from "vuex";
 export default {
   data() {
     return {
@@ -62,15 +61,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      sign: "auth/signIn",
-    }),
     submit() {
-      this.$store.state.auth.authS=true
-      this.sign(this.form)
-      setTimeout(()=>{
-        this.$store.state.auth.authS=false
-      },1000)
+      this.$store.dispatch('auth/signIn',this.form)
+          .catch(()=>{
+            this.$store.state.auth.authS=false
+          })
     },
 
   }

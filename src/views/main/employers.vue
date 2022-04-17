@@ -164,7 +164,7 @@ export default {
     //   console.log("hello")
     // })
     axios
-        .get("market?include=employee", {
+        .get("market?include=employees", {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),

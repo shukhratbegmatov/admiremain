@@ -46,7 +46,7 @@
 
           <label class="cre_label">Telefon raqam</label>
           <div class="input_group">
-            <input type="number" v-model="number" placeholder="phone" />
+            <input type="number" v-model="number" v-mask="'#########'" placeholder="phone" />
           </div>
 
           <label class="cre_label">Manzil</label>

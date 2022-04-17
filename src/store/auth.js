@@ -100,16 +100,16 @@ export default {
             console.log(response)
         },
         async signIn({ dispatch ,state}, credentials) {
+            state.authS=true
             let response = await axios.post('user/login', credentials)
             dispatch('attempt', response.data.data.token)
                 .then(() => {
                     router.push({ path: '/' })
                     state.authS=false
                 })
-                .catch(errors=>{
-                    console.log(errors.response)
-                    state.authS=false
-                })
+
+
+
         },
         async attempt({ commit, state }, token) {
             if (token) {

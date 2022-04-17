@@ -1,5 +1,5 @@
 <template>
-  <div @scroll="scroll">
+  <div >
     <header class="header">
       <div class="search" :class="{ active: searchs }">
         <div class="search_ch">
@@ -16,6 +16,7 @@
               @click="
                 searchs = false;
                 text = '';
+                getMarkets()
               "
               width="16"
               height="16"
@@ -67,10 +68,9 @@
       </div>
     </header>
     <main class="main">
-      <div class="container">
+      <div class="container" id="myContener">
         <div v-if="markets">
           <a
-            @scroll="scroll(item)"
             class="market-item"
             v-for="(item, index) in markets"
             :key="index"
@@ -105,8 +105,8 @@
                 <span class="dots"></span>
               </button>
               <div
-                class="actions-links-wrap "
-                :class="{'actions-links-show':isActives[index].active}"
+                class="actions-links-wrap"
+                :class="{' actions-links-show':isActives[index].active==true}"
               >
                 <router-link :to="'ru/employer/create/'+item.id" class="action-link">
                   <img src="@/assets/images/svg/prodile.svg" alt=":(" />
@@ -142,7 +142,6 @@
 </style>
 <script>
 import Footer from "@/components/Header/Footer";
-import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
   components: { Footer },
@@ -157,14 +156,13 @@ export default {
     };
   },
   mounted() {
-    // window.addEventListener('click',function (){
-    //   this.isActives.forEach(el=>{
-    //     el.active=false
-    //   })
-    //   console.log("hello")
-    // })
+    for (let i=0;i<=10000;i++){
+      this.isActives.push({
+        active:false
+      })
+    }
     axios
-      .get("market?per-page=" + this.item, {
+      .get("market?per-page=" + this.item,  {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -172,23 +170,25 @@ export default {
       })
       .then((response) => {
         this.markets = response.data.data;
-        for (let i=0;i<=this.markets.length;i++){
-          this.isActives.push({
-            'active':false
-          })
-        }
       });
-    this.scroll();
+    this.scroll()
   },
   computed: {
-    getMarket() {
-      return this.$store.getters.allMagazine;
-    },
-    ...mapGetters({
-      user: "auth/user",
-    }),
+
   },
   methods: {
+    getMarkets(){
+      axios
+          .get("market", {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            this.markets = response.data.data;
+          });
+    },
     deleteFunc(item){
       axios
           .post("market/delete-market",
@@ -206,11 +206,10 @@ export default {
           });
   },
     showActions(index) {
-      this.isActives.forEach(el=>{
+      this.isActives.forEach((el)=>{
         el.active=false
       })
       this.isActives[index].active=!this.isActives[index].active
-      console.log(this.isActives[index].active)
     },
     searchsF() {
       axios
@@ -221,35 +220,35 @@ export default {
           },
         })
         .then((response) => {
-          console.log(this.markets, "hello");
-          this.markets = response.data;
+          this.markets = response.data.data;
         });
     },
+
+    nexPage(item) {
+      this.$router.push("/ru/shop/" + item);
+    },
+
     scroll() {
       window.onscroll = () => {
         let bottomOfWindow =
-          document.documentElement.scrollTop + window.innerHeight ===
-          document.documentElement.offsetHeight;
-
+            document.documentElement.scrollTop + window.innerHeight ===
+            document.documentElement.offsetHeight;
         if (bottomOfWindow) {
           this.$store.state.pending = true;
           this.item = this.item + 20;
           axios
-            .get("market?per-page=" + this.item, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            })
-            .then((response) => {
-              this.markets = response.data;
-              this.$store.state.pending = false;
-            });
+              .get("market?per-page=" + this.item, {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              })
+              .then((response) => {
+                this.markets = response.data.data;
+                this.$store.state.pending = false;
+              });
         }
       };
-    },
-    nexPage(item) {
-      this.$router.push("/ru/shop/" + item);
     },
   },
 };
